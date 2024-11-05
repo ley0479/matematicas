@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventura Compleja</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298, #1e3c72);
+            animation: backgroundAnimation 8s infinite alternate;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Fondo animado */
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Estilos de la barra de navegación */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu li a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Botón animado para iniciar el juego */
+        .start-button {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            color: #1e3c72;
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.3s ease;
+            animation: pulseAnimation 2s infinite;
+        }
+
+        .start-button:hover {
+            background: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Animación de pulso para el botón */
+        @keyframes pulseAnimation {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Estilos del cuestionario */
+        .quiz-container {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .option {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background: #fff;
+            color: #1e3c72;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .option:hover {
+            background: #ffd700;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación con efecto -->
+    <nav>
+        <ul class="menu">
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/day/index.html">Inicio</a></li>
+        </ul>
+    </nav>
+
+  <!-- Pantalla de inicio con el botón de comenzar -->
+  <div id="start-screen" class="screen">
+    <h1>Aventura Compleja</h1>
+    <button id="start-button">Iniciar Juego</button>
+  </div>
+
+  <!-- Pantalla de juego -->
+  <div id="game-screen" class="screen hidden">
+    <div class="progress-bar">
+      <div id="progress-inner"></div>
+    </div>
+    <div class="question-container animated fadeIn">
+      <h2 id="question-title">Pregunta: ¿Cuál es el valor de |2 + 3i|?</h2>
+      <div class="answer-options">
+        <button class="answer-btn">√13</button>
+        <button class="answer-btn">√11</button>
+        <button class="answer-btn">5</button>
+        <button class="answer-btn">√8</button>
+      </div>
+    </div>
+    <div id="result-message" class="hidden"></div>
+    <button id="next-question" class="hidden">Siguiente Pregunta</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html" class="menu-button">Inicio</a></li>
+        <li><a href="login.html" class="menu-button">Iniciar Sesión</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Iniciar Sesión</h1>
+</header>
+
+<main>
+    <section id="login-form">
+        <h2>Por favor, ingresa tus datos</h2>
+        <form id="formLogin">
+            <div class="input-group">
+                <label for="estudiante">Usuario:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="1234">Contraseña:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn-submit">Iniciar Sesión</button>
+        </form>
+        <p id="loginError" style="color: red; display: none;">Credenciales incorrectas, intente de nuevo.</p>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

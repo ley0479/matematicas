@@ -1,0 +1,87 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #4a90e2, #9013fe);
+    color: #fff;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .screen {
+    text-align: center;
+    width: 80%;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  button:hover {
+    transform: scale(1.1);
+  }
+  
+  #start-button {
+    background-color: #ff9f00;
+    color: #fff;
+  }
+  
+  #game-screen .question-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .answer-btn {
+    background-color: #4a90e2;
+    color: #fff;
+    margin: 10px;
+  }
+  
+  #next-question {
+    margin-top: 20px;
+    background-color: #ff9f00;
+  }
+  
+  #result-message {
+    font-size: 1.2em;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  #progress-inner {
+    width: 0%;
+    height: 10px;
+    background-color: #4caf50;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

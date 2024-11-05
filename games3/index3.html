@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Conocimientos - Matemáticas y Números Complejos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/day/index.html">Inicio</a></li>
+            <li><a href="https://wordwall.net/es/resource/80879448/juego-de-conocimiento-en-numeros-complejos-fucla-leison">Juego-pierde y gana</a></li>
+            <li><a href="https://wordwall.net/es/resource/80892000/curso-de-preguntas-de-numeros-complejos">Curso de preguntas</a></li>
+            <li><a href="juego.html"></a></li>
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/verdadero_%20o%20falso/verdad_falso.html">Falso verdadero</a></li>
+        </ul>
+    </nav>
+
+    <div id="quiz-container">
+        <h1>Juego de Conocimientos - Matemáticas y Números Complejos</h1>
+        <div id="question"></div>
+        <div id="options"></div>
+        <div id="answer-feedback"></div> <!-- Feedback de respuestas correctas o incorrectas -->
+        <div id="controls">
+            <button id="prev-button" onclick="prevQuestion()">Anterior</button>
+            <button id="next-button" onclick="nextQuestion()">Siguiente</button>
+        </div>
+    </div>
+    
+
+    <div id="results-table">
+        <h2>Tablero de Aciertos y Errores</h2>
+        <table id="results">
+            <thead>
+                <tr>
+                    <th>Pregunta</th>
+                    <th>Tu Respuesta</th>
+                    <th>Respuesta Correcta</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="game.js"></script> <!-- Vincula el archivo JavaScript -->
+</body>
+</html>

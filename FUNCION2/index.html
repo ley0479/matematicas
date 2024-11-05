@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Math: Competencia en Línea</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            background-color: #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+
+        .menu a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu a:active {
+            transform: translateY(1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/day/index.html">Inicio</a></li>
+            <li><a href="https://wordwall.net/es/resource/80879448/juego-de-conocimiento-en-numeros-complejos-fucla-leison">Juego-pierde y gana</a></li>
+            <li><a href="https://wordwall.net/es/resource/80892000/curso-de-preguntas-de-numeros-complejos">Curso de preguntas</a></li>
+            <li><a href="juego.html">Juego</a></li>
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/verdadero_%20o%20falso/verdad_falso.html">Falso verdadero</a></li>
+        </ul>
+    </nav>
+    </nav>
+    <h1>Battle Math: Competencia en Línea</h1>
+    <div class="container" id="game-container">
+        <div id="player-info">
+            <input type="text" id="player-name" placeholder="Ingresa tu nombre" />
+            <button onclick="startGame()">Iniciar Juego</button>
+        </div>
+        <div id="battle-area" style="display: none;">
+            <h2 id="opponent-name">¡Vs. Oponente!</h2>
+            <div id="math-problem"></div>
+            <input type="text" id="player-answer" placeholder="Escribe tu respuesta aquí" />
+            <button onclick="submitAnswer()">Enviar Respuesta</button>
+            <div id="results"></div>
+            <div id="score"></div>
+            <div id="timer"></div>
+        </div>
+    </div>
+
+    <script>
+        const opponents = ["Oponente 1", "Oponente 2", "Oponente 3"];
+        let currentOpponentIndex = 0;
+        let problems = [];
+        let currentProblemIndex = 0;
+        let playerName = "";
+        let score = 0;
+        let timeLeft = 30; // 30 seconds for each problem
+        let timerInterval;
+
+        // Función para crear problemas matemáticos
+        function createProblems() {
+            return [
+                { question: "5 + 3", answer: "8" },
+                { question: "12 - 4", answer: "8" },
+                { question: "3 x 6", answer: "18" },
+                { question: "18 / 2", answer: "9" },
+                { question: "15 + 10", answer: "25" },
+                { question: "20 - 5", answer: "15" },
+                { question: "4 x 4", answer: "16" },
+                { question: "27 / 3", answer: "9" },
+                { question: "9 + 10", answer: "19" },
+                { question: "50 - 30", answer: "20" },
+                { question: "¿Cuál es la parte real de 3 + 4i?", answer: "3" },
+                { question: "¿Cuál es el módulo de 3 + 4i?", answer: "5" },
+                { question: "¿Qué es la función f(z) = z²?", answer: "función cuadrática" },
+                { question: "Si z = 2 + 3i, calcula z².", answer: "-5 + 12i" },
+                { question: "¿Cuál es la suma de (2 + 3i) + (4 + 5i)?", answer: "6 + 8i" },
+                { question: "¿Cuál es el producto de (1 + i)(1 - i)?", answer: "2" },
+                { question: "¿Cómo se expresa 5 en forma polar?", answer: "5(cos 0 + i sin 0)" },
+                { question: "La derivada de f(z) = z^3 es", answer: "3z²" },
+                { question: "¿Cuál es el conjugado de 4 + 2i?", answer: "4 - 2i" },
+                { question: "Calcula 1/(1 + i).", answer: "0.5 - 0.5i" }
+            ];
+        }
+
+        function startGame() {
+            playerName = document.getElementById('player-name').value;
+            if (!playerName) {
+                alert("Por favor, ingresa tu nombre.");
+                return;
+            }
+            problems = createProblems();
+            document.getElementById('player-info').style.display = 'none';
+            document.getElementById('battle-area').style.display = 'block';
+            document.getElementById('math-problem').innerText = `¡Es tu turno, ${playerName}! Resuelve:`;
+            loadProblem();
+        }
+
+        function loadProblem() {
+            if (currentProblemIndex < problems.length) {
+                document.getElementById('math-problem').innerText = `¡Es tu turno, ${playerName}! Resuelve: ${problems[currentProblemIndex].question}`;
+                document.getElementById('player-answer').value = "";
+                document.getElementById('results').innerText = "";
+                document.getElementById('score').innerText = `Puntuación: ${score}`;
+                startTimer();
+            } else {
+                document.getElementById('results').innerText = "¡Felicidades! Has completado todas las preguntas.";
+                document.getElementById('math-problem').style.display = 'none'; // Hide the problem
+                document.getElementById('player-answer').style.display = 'none'; // Hide the input
+                clearInterval(timerInterval);
+            }
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 30; // Reinicia el tiempo
+            document.getElementById('timer').innerText = `Tiempo restante: ${timeLeft} segundos`;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = `Tiempo restante: ${timeLeft} segundos`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('results').innerText = "¡Se acabó el tiempo! El oponente ataca.";
+                    currentProblemIndex++;
+                    loadProblem();
+                }
+            }, 1000);
+        }
+
+        function submitAnswer() {
+            const userAnswer = document.getElementById('player-answer').value.trim();
+            const correctAnswer = problems[currentProblemIndex].answer;
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById('results').innerText = "¡Correcto! Has infligido daño al oponente.";
+                score += 10; // Aumenta la puntuación
+                currentProblemIndex++;
+                loadProblem();
+            } else {
+                document.getElementById('results').innerText = "¡Incorrecto! El oponente se defiende.";
+                currentProblemIndex++;
+                loadProblem();
+            }
+        }
+    </script>
+</body>
+</html>

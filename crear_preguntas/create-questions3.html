@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Preguntas</title>
+  <style>
+    /* General */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+    }
+
+    h2 {
+      color: #555;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    /* Estilos de navegación */
+    nav {
+      background-color: #333;
+      padding: 10px 0;
+    }
+
+    .menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu li {
+      margin: 0 15px;
+    }
+
+    .menu-button {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      background-color: #007bff;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Formulario */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    #create-questions {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 1.1em;
+      color: #333;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+      box-shadow: inset 2px 2px 10px rgba(0, 123, 255, 0.2);
+    }
+
+    /* Botón en 3D */
+    .btn-submit {
+      background: linear-gradient(145deg, #007bff, #0056b3);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+                  -5px -5px 10px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(145deg, #0056b3, #007bff);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:active {
+      box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.3),
+                  inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+      transform: translateY(2px);
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html" class="menu-button">Inicio</a></li>
+        <li><a href="login.html" class="menu-button">Iniciar Sesión</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Crear Preguntas</h1>
+</header>
+
+<main>
+    <section id="create-questions">
+        <h2>Crea una nueva pregunta</h2>
+        <!-- Formulario modificado con method y action -->
+        <form id="formCreateQuestion" method="POST" action="guardar_pregunta.php">
+            <div class="input-group">
+                <label for="question">Enunciado de la pregunta:</label>
+                <input type="text" id="question" name="question" required>
+            </div>
+            <div class="input-group">
+                <label for="option1">Opción 1:</label>
+                <input type="text" id="option1" name="option1" required>
+            </div>
+            <div class="input-group">
+                <label for="option2">Opción 2:</label>
+                <input type="text" id="option2" name="option2" required>
+            </div>
+            <div class="input-group">
+                <label for="correctOption">Respuesta correcta:</label>
+                <input type="text" id="correctOption" name="correctOption" required>
+            </div>
+            <button type="submit" class="btn-submit">Crear Pregunta</button>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>

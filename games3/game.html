@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo Soy Millonario - Juego</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="game.js"></script> <!-- Lógica del juego -->
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="leaderboard.html">Tabla de Clasificación</a></li>
+        </ul>
+    </nav>
+
+    <div id="game-container" class="container">
+        <h1>Yo Soy Millonario - Preguntas de Números Complejos</h1>
+
+        <!-- Contenedor del reloj de arena -->
+        <div id="reloj-container">
+            <div id="reloj-arena"></div>
+        </div>
+
+        <!-- Contenedor de preguntas -->
+        <div id="question-container">
+            <h2 id="question"></h2>
+
+            <!-- Opciones de respuesta -->
+            <div class="option" id="option1" onclick="checkAnswer(0)"></div>
+            <div class="option" id="option2" onclick="checkAnswer(1)"></div>
+            <div class="option" id="option3" onclick="checkAnswer(2)"></div>
+            <div class="option" id="option4" onclick="checkAnswer(3)"></div>
+        </div>
+
+        <!-- Mensaje de resultado -->
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>

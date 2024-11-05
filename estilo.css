@@ -1,0 +1,252 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    background-color: #007bff;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#ejercicios {
+    background-color: #fff;
+    padding: 20px;
+    margin: auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pregunta {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#resultado {
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+
+/* Fuente moderna */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #333;
+}
+
+input[type="number"], select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#resultText {
+    font-size: 1.2em;
+    color: #333;
+}
+body {
+    font-family: Arial, sans-serif; /* Cambia la fuente según tu preferencia */
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333; /* Color de fondo del menú */
+    padding: 10px 20px; /* Espaciado alrededor del menú */
+}
+
+.menu {
+    list-style-type: none; /* Eliminar viñetas */
+    padding: 0; /* Eliminar espaciado por defecto */
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: space-around; /* Espaciado uniforme entre los botones */
+}
+
+.menu li {
+    display: inline; /* Alinear elementos en línea */
+}
+
+.menu-button {
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno de los botones */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #4CAF50; /* Color de fondo del botón */
+    transition: background-color 0.3s; /* Transición suave al pasar el ratón */
+}
+
+.menu-button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el ratón */
+}
+
+.menu-button:active {
+    background-color: #388E3C; /* Color al hacer clic */
+}
+/* Animación para las tarjetas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Animación para el sidebar */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-250px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+#sidebar {
+    animation: slideInLeft 0.8s ease-in-out;
+}
+
+/* Animación para el contenido principal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#content {
+    animation: fadeIn 1s ease-in-out;
+}

@@ -1,0 +1,36 @@
+/* Estilos para el menú */
+nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu {
+    display: inline-block;
+}
+
+.menu button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #3498db;  /* Color base */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px #2980b9;  /* Efecto 3D */
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Efecto de "presionado" 3D */
+.menu button:active {
+    box-shadow: 0 2px #2980b9;
+    transform: translateY(3px);
+}
+
+/* Hover para mejorar la interactividad */
+.menu button:hover {
+    background-color: #2980b9;  /* Cambia el color al pasar el mouse */
+    transform: scale(1.05);     /* Hace el botón más grande */
+}

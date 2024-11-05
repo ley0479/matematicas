@@ -1,0 +1,76 @@
+/* Fuente moderna y estilos básicos */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo de la cuadrícula del formulario */
+.form-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #333;
+}
+
+input[type="number"], select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilo para el cuadro de resultado más grande */
+.result-box-large {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+    height: 200px; /* Más grande */
+    font-size: 1.5em; /* Tamaño de texto más grande */
+    overflow-y: auto; /* Permite desplazarse si el contenido es extenso */
+}
+
+#resultText {
+    font-size: 1.2em;
+    color: #333;
+}
+

@@ -1,0 +1,133 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.screen {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#start-button, #next-question {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#start-button:hover, #next-question:hover {
+    background-color: #0056b3;
+}
+
+#progress {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    height: 20px;
+    margin-top: 20px;
+}
+
+#progress-inner {
+    background-color: #4caf50;
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.answer-btn {
+    margin: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.answer-btn:hover {
+    background-color: #218838;
+}
+
+.city-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.building {
+    width: 60px;
+    height: 120px;
+    margin: 10px;
+    background-color: #607d8b;
+    position: relative;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.building.hidden {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.building.unlocked {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 1000;
+}
+/* Estilos de la navegación */
+.nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.nav li {
+    margin: 0;
+}
+
+.btn-inicio {
+    background-color: #007bff;
+    color: #f5f7f7;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0px 5px 0px #0056b3; /* Sombra para efecto 3D */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.btn-inicio:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.btn-inicio:active {
+    transform: translateY(5px); /* Mueve el botón hacia abajo */
+    box-shadow: 0px 2px 0px #0056b3; /* Sombra reducida en clic */
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Interactivo de Matemáticas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        /* Estilo del botón elegante */
+        #start-game {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        #start-game:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Contenedor de juego */
+        .game-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #scoreLevelContainer, #timerContainer, #questionContainer {
+            margin: 10px;
+        }
+
+        .answer-button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .answer-button:hover {
+            background-color: #218838;
+        }
+
+        #startButton {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #startButton:hover {
+            background-color: #c82333;
+        }
+
+        /* Estilos para el área de fractales */
+        #fractal-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #controls {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <h1>LEISON PALACIOS BLANDON</h1>
+        
+        <!-- Botón elegante para acceder al dashboard -->
+        <button id="start-game" onclick="window.location.href='C:\\xampp2\\htdocs\\matematicas\\day\\index.html'">DASHBOARD</button>
+        <!-- Área del canvas del fractal -->
+        <div id="fractal-container">
+            <canvas id="fractalCanvas" width="400" height="400"></canvas>
+        </div>
+        
+        <!-- Pregunta y respuesta en el juego -->
+        
+        
+        <p id="level-info" style="display:none;">Nivel: <span id="level">1</span></p>
+        
+        <!-- Controles para el fractal -->
+        <div id="controls">
+            <label>Color del fractal:</label>
+            <input type="color" id="fractalColor" value="#ffffff">
+            <label>Zoom:</label>
+            <input type="range" id="zoom" min="1" max="10" value="1">
+            <label>Iteraciones máximas:</label>
+            <input type="number" id="iterations" min="10" max="100" value="50">
+            <button onclick="applySettings()">Aplicar Configuración</button>
+        </div>
+    </div>
+    
+    <!-- Contenedor del juego de Verdadero o Falso -->
+    <div class="game-container">
+        <h1>Juego de Verdadero o Falso</h1>
+        <div id="scoreLevelContainer">
+            <p id="score">Puntos: 0</p>
+            <p id="level">Maximo Nivel: 100</p>
+        </div>
+        <div id="questionContainer">
+            <p id="question">Haz clic en "Iniciar Juego" para comenzar.</p>
+        </div>
+        <div id="timerContainer">
+            <p id="timer">10s</p>
+        </div>
+        <div id="buttons">
+            <button id="trueButton" class="answer-button" onclick="checkAnswer(true)">Verdadero</button>
+            <button id="falseButton" class="answer-button" onclick="checkAnswer(false)">Falso</button>
+        </div>
+        <button id="startButton" onclick="startGame()">Iniciar Juego</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

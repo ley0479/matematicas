@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego Didáctico de Matemáticas</title>
+  <style>
+    /* Estilos Generales */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    }
+    .container {
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      padding: 25px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    .question {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .option {
+      padding: 12px;
+      border: 2px solid #e3e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      font-size: 16px;
+    }
+    .option:hover {
+      background-color: #cfe0f5;
+      transform: scale(1.05);
+    }
+    .start-btn, .restart-btn {
+      margin-top: 15px;
+      padding: 12px 25px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+    .score, .timer {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+    .results-table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .results-table th, .results-table td {
+      padding: 10px;
+      border: 1px solid #e3e8f0;
+    }
+    .results-table th {
+      background-color: #4caf50;
+      color: white;
+    }
+    .results-table td {
+      background-color: #f0f4f8;
+    }
+    /* Emociones */
+    .emotion {
+      width: 50px;
+      height: auto;
+      margin-top: 15px;
+      display: none;
+    }
+    /* Pelota Rebotando */
+    .bouncing-ball {
+      position: absolute;
+      top: 10px;
+      width: 50px;
+      height: 50px;
+      background-color: #ff6b6b;
+      border-radius: 50%;
+      animation: bounce 2s ease infinite;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(200px);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Pelota Rebotando -->
+  <div class="bouncing-ball"></div>
+
+  <!-- Contenedor del Juego -->
+  <div class="container">
+    <div class="question" id="question">Bienvenido al Juego Matemático</div>
+    <div class="options" id="options"></div>
+    <button class="start-btn" id="startBtn" onclick="startGame()">Iniciar Juego</button>
+    <div class="score" id="score">Puntuación: 0</div>
+    <div class="timer" id="timer">Tiempo: 60s</div>
+
+    <!-- Imagen de Emoción -->
+    <img id="emotionImg" class="emotion" src="" alt="Emoción">
+
+    <!-- Tabla de Resultados -->
+    <table class="results-table">
+      <tr>
+        <th>Aciertos</th>
+        <th>Errores</th>
+      </tr>
+      <tr>
+        <td id="correctAnswers">0</td>
+        <td id="incorrectAnswers">0</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "¿Cuál es la forma polar de un número complejo?", options: ["a) r(cosθ + i sinθ)", "b) a + bi", "c) e^(iθ)", "d) Ninguna de las anteriores"], answer: 0 },
+      { question: "¿Qué es una función compleja?", options: ["a) Una función con valores complejos", "b) Una sucesión infinita", "c) Un tipo de número", "d) Un vector"], answer: 0 },
+      { question: "¿Cuál es el módulo de 3 + 4i?", options: ["a) 5", "b) 7", "c) 4", "d) 3"], answer: 0 },
+      { question: "¿Qué representa 'i' en números complejos?", options: ["a) Raíz cuadrada de -1", "b) Un número entero", "c) Parte real", "d) Un valor indefinido"], answer: 0 },
+      { question: "¿Qué es una sucesión compleja?", options: ["A) Sucesión de números reales", "B) Función que asigna número complejo", "C) Secuencia de números enteros", "D) Conjunto de números imaginarios"], answer: 1 },
+      { question: "¿Cuándo converge (𝑧𝑛) a un número 𝐿?", options: ["A) (𝑧𝑛) > 𝐿", "B) ∣𝑧𝑛−𝐿∣→∞", "C) ∣𝑧𝑛−𝐿∣→0", "D) (𝑧𝑛) es constante"], answer: 2 },
+      { question: "¿Cuál es el límite de (𝑧𝑛)=1/𝑛+𝑖/𝑛 cuando 𝑛→∞?", options: ["A) 1+𝑖", "B) 0", "C) 𝑖", "D) ∞"], answer: 1 },
+      { question: "¿Cómo se representa una función compleja?", options: ["A) f(z) = z²+1", "B) f(z) = ∣𝑧∣", "C) f(z) = 2x+y", "D) Ninguna"], answer: 0 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let correctAnswers = 0;
+    let incorrectAnswers = 0;
+    let level = 1;
+    let timeLeft = 60;
+    let timer;
+
+    function startGame() {
+      resetGame();
+      showQuestion();
+      startTimer();
+    }
+
+    function resetGame() {
+      score = 0;
+      correctAnswers = 0;
+      incorrectAnswers = 0;
+      level = 1;
+      currentQuestionIndex = 0;
+      document.getElementById("correctAnswers").innerText = correctAnswers;
+      document.getElementById("incorrectAnswers").innerText = incorrectAnswers;
+      document.getElementById("score").innerText = `Puntuación: ${score}`;
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("emotionImg").style.display = "none";
+    }
+
+    function showQuestion() {
+      if (currentQuestionIndex < questions.length) {
+        const question = questions[currentQuestionIndex];
+        document.getElementById("question").innerText = question.question;
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+        question.options.forEach((option, index) => {
+          const optionButton = document.createElement("button");
+          optionButton.classList.add("option");
+          optionButton.innerText = option;
+          optionButton.onclick = () => checkAnswer(index);
+          optionsContainer.appendChild(optionButton);
+        });
+      } else {
+        endLevel();
+      }
+    }
+
+    function startTimer() {
+      timeLeft = 60;
+      clearInterval(timer);
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerText = `Tiempo: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          checkAnswer(-1);
+        }
+      }, 1000);
+    }
+
+    function checkAnswer(selectedOption) {
+      clearInterval(timer);
+      const question = questions[currentQuestionIndex];
+      const emotionImg = document.getElementById("emotionImg");
+
+      if (selectedOption === question.answer) {
+        score++;
+        correctAnswers++;
+        emotionImg.src = "happy.png";
+        emotionImg.style.display = "block";
+      } else {
+        incorrectAnswers++;
+        emotionImg.src = "sad.png";
+        emotionImg.style.display = "block";
+      }
+
+      updateResultsTable();
+      currentQuestionIndex++;
+
+      if (correctAnswers === 5 || correctAnswers === 10 || correctAnswers === 15 || correctAnswers === 20) {
+        endLevel();
+      } else {
+        showQuestion();
+        startTimer();
+      }
+    }
+
+    function updateResultsTable() {
+      document.getElementById("correctAnswers").innerText = correctAnswers;
+      document.getElementById("incorrectAnswers").innerText = incorrectAnswers;
+      document.getElementById("score").innerText = `Puntuación: ${score}`;
+    }
+
+    function endLevel() {
+      level++;
+      alert(`¡Felicidades! Has pasado al nivel ${level}!`);
+      if (level > 4) {
+        endGame();
+      } else {
+        currentQuestionIndex = 0;
+        showQuestion();
+        startTimer();
+      }
+    }
+
+    function endGame() {
+      alert(`¡Juego completado! Puntuación final: ${score}`);
+      document.getElementById("startBtn").style.display = "block";
+      resetGame();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Animado - Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos de la vista */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298, #1e3c72);
+            animation: backgroundAnimation 8s infinite alternate;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Fondo animado */
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Estilos de la barra de navegación */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu li a:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Botón animado para iniciar el juego */
+        .start-button {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            color: #1e3c72;
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.3s ease;
+            animation: pulseAnimation 2s infinite;
+        }
+
+        .start-button:hover {
+            background: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Animación de pulso para el botón */
+        @keyframes pulseAnimation {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Estilos del cuestionario */
+        .quiz-container {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .option {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background: #fff;
+            color: #1e3c72;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .option:hover {
+            background: #ffd700;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación con efecto -->
+    <nav>
+        <ul class="menu">
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/day/index.html">Inicio</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botón de inicio del juego con animación -->
+    <button class="start-button" onclick="startGame()">
+        ¡Comenzar el Juego!
+    </button>
+
+    <!-- Contenedor del cuestionario -->
+    <div class="quiz-container" id="quizContainer">
+        <div class="question" id="question"></div>
+        <div id="optionsContainer"></div>
+        <button class="start-button" onclick="nextQuestion()">Siguiente</button>
+    </div>
+
+    <script>
+        // Cuestionario con preguntas y opciones
+        const questions = [
+            {
+                question: "¿En qué siglo surgió el concepto de los números complejos?",
+                options: ["A) Siglo XV", "B) Siglo XVI", "C) Siglo XVII", "D) Siglo XVIII"],
+                correctAnswer: "B) Siglo XVI"
+            },
+            {
+                question: "¿Qué matemático fue el primero en aceptar las raíces cuadradas de números negativos?",
+                options: ["A) Carl Friedrich Gauss", "B) Leonhard Euler", "C) Rafael Bombelli", "D) Jean-Robert Argand"],
+                correctAnswer: "C) Rafael Bombelli"
+            },
+            {
+                question: "¿Qué letra se utiliza comúnmente para representar la raíz cuadrada de -1 en los números complejos?",
+                options: ["A) j", "B) z", "C) i", "D) k"],
+                correctAnswer: "C) i"
+            },
+            // Agrega más preguntas según sea necesario
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function startGame() {
+            document.querySelector('.start-button').style.display = 'none'; // Oculta el botón de inicio
+            document.getElementById('quizContainer').style.display = 'block'; // Muestra el cuestionario
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsContainer = document.getElementById('optionsContainer');
+
+            questionElement.textContent = questions[currentQuestionIndex].question;
+            optionsContainer.innerHTML = ''; // Limpia las opciones anteriores
+
+            questions[currentQuestionIndex].options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectAnswer(option);
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        function selectAnswer(selectedOption) {
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            if (selectedOption === correctAnswer) {
+                alert("¡Correcto!");
+            } else {
+                alert("Incorrecto. Intenta de nuevo.");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                alert("¡Felicidades! Has completado todas las preguntas.");
+                document.getElementById('quizContainer').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

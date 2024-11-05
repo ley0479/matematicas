@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Matemáticas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5; /* Color de fondo claro */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Estilos para la clase .menu */
+        .menu {
+            position: absolute; /* Coloca los botones en la esquina superior izquierda */
+            top: 20px;
+            left: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu li {
+            margin-bottom: 10px; /* Espacio entre los botones */
+        }
+
+        .menu a {
+            display: inline-block; /* Permite que el padding y margen funcionen correctamente */
+            padding: 10px 15px;
+            background: linear-gradient(45deg, #4caf50, #81c784); /* Degradado verde */
+            color: #fff; /* Color del texto */
+            text-decoration: none; /* Sin subrayado */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra */
+            transition: background 0.3s, transform 0.2s; /* Transiciones suaves */
+        }
+
+        .menu a:hover {
+            background: linear-gradient(45deg, #388e3c, #66bb6a); /* Cambio de color en hover */
+            transform: scale(1.05); /* Aumento de tamaño en hover */
+        }
+
+        #game-container {
+            background-color: #ffffff; /* Color de fondo blanco para el contenedor del juego */
+            border-radius: 12px; /* Bordes redondeados */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra suave */
+            padding: 30px; /* Espaciado interno */
+            max-width: 400px; /* Ancho máximo del contenedor */
+            text-align: center; /* Centramos el texto */
+        }
+
+        #score-board {
+            margin-bottom: 20px; /* Espacio inferior */
+            font-size: 1.2em; /* Tamaño de fuente */
+            color: #333; /* Color de texto */
+        }
+
+        #question-container {
+            margin-bottom: 20px; /* Espacio inferior */
+            font-size: 1.5em; /* Tamaño de fuente para la pregunta */
+            color: #444; /* Color de texto */
+        }
+
+        #options-container button {
+            display: block;
+            width: 100%;
+            margin: 5px 0; /* Espacio entre botones de opciones */
+            padding: 12px; /* Espaciado interno */
+            background: linear-gradient(90deg, #2196F3, #21CBF3); /* Degradado azul */
+            border: none; /* Sin borde */
+            color: white; /* Color del texto */
+            font-size: 1em; /* Tamaño de fuente */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: background 0.3s, transform 0.2s; /* Transiciones suaves */
+        }
+
+        #options-container button:hover {
+            background: linear-gradient(90deg, #1E88E5, #1AB7E8); /* Cambio de color en hover */
+            transform: scale(1.05); /* Aumento de tamaño en hover */
+        }
+
+        #timer {
+            font-size: 1.2em; /* Tamaño de fuente */
+            color: #e91e63; /* Color del texto */
+            margin: 20px 0; /* Espaciado */
+        }
+
+        #result-message {
+            font-size: 1.5em; /* Tamaño de fuente para el mensaje de resultado */
+            color: #4caf50; /* Color del texto */
+            margin: 20px 0; /* Espaciado */
+        }
+
+        #emotion-container {
+            margin-top: 20px; /* Espacio superior */
+        }
+
+        /* Estilo para el botón de reiniciar */
+        #restart-btn {
+            padding: 10px 15px;
+            background-color: #FF5722; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: background 0.3s; /* Transición suave */
+        }
+
+        #restart-btn:hover {
+            background-color: #E64A19; /* Cambio de color en hover */
+        }
+
+        /* Estilo para el botón de iniciar */
+        #start-btn {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: background 0.3s; /* Transición suave */
+        }
+
+        #start-btn:hover {
+            background-color: #388E3C; /* Cambio de color en hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li><a href="file:///C:/xampp2/htdocs/matematicas/day/index.html">Inicio</a></li>
+        </ul>
+    </nav>
+    <div id="game-container">
+        <h1>Juego de Matemáticas</h1>
+        <div id="score-board">
+            <p>Nivel: <span id="level">1</span></p>
+            <p>Puntuación: <span id="score">0</span></p>
+        </div>
+        <div id="question-container">
+            <p id="question">¿Qué es una función compleja?</p>
+            <div id="options-container"></div>
+        </div>
+
+        <p id="timer">Tiempo: <span id="time">60</span>s</p>
+        <button id="start-btn" onclick="startGame()">Iniciar Juego</button>
+        <button id="restart-btn" onclick="resetGame()" style="display: none;">Reiniciar</button>
+        <div id="result-message">CAPO</div>
+        <div id="emotion-container" style="display: block;">
+            <img id="emotion" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="Emoción" width="100">
+        </div>
+        
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

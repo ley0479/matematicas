@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura de Fractales Complejos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Aventura de Fractales Complejos</h1>
+        
+        <button id="start-game" onclick="startGame()">Iniciar Juego</button>
+        
+        <div id="fractal-container" style="display:none;">
+            <canvas id="fractalCanvas" width="400" height="400"></canvas>
+        </div>
+        
+        <div id="question-container" style="display:none;">
+            <p id="question">Pregunta: </p>
+            <input type="text" id="answer" placeholder="Ingresa tu respuesta">
+            <button id="submit-answer" onclick="checkAnswer()">Enviar Respuesta</button>
+        </div>
+        
+        <p id="level-info" style="display:none;">Nivel: <span id="level">1</span></p>
+        
+        <div id="controls" style="display:none;">
+            <label>Color del fractal:</label>
+            <input type="color" id="fractalColor" value="#ffffff">
+            <label>Zoom:</label>
+            <input type="range" id="zoom" min="1" max="10" value="1">
+            <label>Iteraciones máximas:</label>
+            <input type="number" id="iterations" min="10" max="100" value="50">
+            <button onclick="applySettings()">Aplicar Configuración</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

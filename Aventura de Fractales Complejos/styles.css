@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1a1a1a;
+    color: #17ccd2;
+}
+
+#game-container {
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+#fractal-container {
+    margin: 20px 0;
+}
+
+#question-container {
+    margin-top: 15px;
+}
+
+#submit-answer {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: rgb(117, 241, 255);
+    border: none;
+    cursor: pointer;
+}
+
+#submit-answer:hover {
+    background-color: #45a049;
+}
+
+canvas {
+    border: 2px solid #1cd5cf;
+}
